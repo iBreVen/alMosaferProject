@@ -6,7 +6,7 @@
       <class name="MosaferTest">
         <methods>
           <include name="preTest"/>
-          <include name="test"/>
+          <include name="checkDeparturedate"/>
           <include name="postTest"/>
         </methods>
       </class> <!-- MosaferTest -->
