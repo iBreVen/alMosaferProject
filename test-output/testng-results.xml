@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-26T17:37:10 EET" name="Default suite" finished-at="2023-11-26T17:37:12 EET" duration-ms="2552">
+  <suite started-at="2023-11-29T23:43:55 EET" name="Default suite" finished-at="2023-11-29T23:44:00 EET" duration-ms="5084">
     <groups>
     </groups>
-    <test started-at="2023-11-26T17:37:10 EET" name="Default test" finished-at="2023-11-26T17:37:12 EET" duration-ms="2552">
+    <test started-at="2023-11-29T23:43:55 EET" name="Default test" finished-at="2023-11-29T23:44:00 EET" duration-ms="5084">
       <class name="MosaferTest">
-        <test-method is-config="true" signature="preTest()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:10 EET" name="preTest" finished-at="2023-11-26T17:37:12 EET" duration-ms="2358" status="PASS">
+        <test-method is-config="true" signature="preTest()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:55 EET" name="preTest" finished-at="2023-11-29T23:43:58 EET" duration-ms="2584" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- preTest -->
-        <test-method signature="QitafLogo()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="QitafLogo" finished-at="2023-11-26T17:37:12 EET" duration-ms="62" status="PASS">
+        <test-method signature="QitafLogo()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="QitafLogo" finished-at="2023-11-29T23:43:58 EET" duration-ms="87" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- QitafLogo -->
-        <test-method signature="checkDeparturedate()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="checkDeparturedate" finished-at="2023-11-26T17:37:12 EET" duration-ms="30" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkDeparturedate -->
-        <test-method signature="checkHotelIsNotSelected()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="checkHotelIsNotSelected" finished-at="2023-11-26T17:37:12 EET" duration-ms="16" status="PASS">
+        <test-method signature="checkHotelIsNotSelected()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="checkHotelIsNotSelected" finished-at="2023-11-29T23:43:58 EET" duration-ms="22" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- checkHotelIsNotSelected -->
-        <test-method signature="checkReturnDate()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="checkReturnDate" finished-at="2023-11-26T17:37:12 EET" duration-ms="18" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- checkReturnDate -->
-        <test-method signature="contactNumber()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="contactNumber" finished-at="2023-11-26T17:37:12 EET" duration-ms="14" status="PASS">
+        <test-method signature="contactNumber()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="contactNumber" finished-at="2023-11-29T23:43:58 EET" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- contactNumber -->
-        <test-method signature="testCurrency()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="testCurrency" finished-at="2023-11-26T17:37:12 EET" duration-ms="12" status="PASS">
+        <test-method signature="testCurrency()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="testCurrency" finished-at="2023-11-29T23:43:58 EET" duration-ms="16" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCurrency -->
-        <test-method signature="testLanguage()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="testLanguage" finished-at="2023-11-26T17:37:12 EET" duration-ms="16" status="PASS">
+        <test-method signature="testLanguage()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="testLanguage" finished-at="2023-11-29T23:43:58 EET" duration-ms="17" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testLanguage -->
-        <test-method is-config="true" signature="postTest()[pri:0, instance:MosaferTest@1bb1fde8]" started-at="2023-11-26T17:37:12 EET" name="postTest" finished-at="2023-11-26T17:37:12 EET" duration-ms="0" status="PASS">
+        <test-method signature="checkDepartureDate()[pri:1, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:58 EET" name="checkDepartureDate" finished-at="2023-11-29T23:43:59 EET" duration-ms="566" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkDepartureDate -->
+        <test-method signature="checkReturnDate()[pri:1, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:59 EET" name="checkReturnDate" finished-at="2023-11-29T23:43:59 EET" duration-ms="462" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkReturnDate -->
+        <test-method signature="hotelLocation()[pri:1, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:43:59 EET" name="hotelLocation" finished-at="2023-11-29T23:44:00 EET" duration-ms="701" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- hotelLocation -->
+        <test-method signature="randomWebsiteLang()[pri:1, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:44:00 EET" name="randomWebsiteLang" finished-at="2023-11-29T23:44:00 EET" duration-ms="580" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- randomWebsiteLang -->
+        <test-method is-config="true" signature="postTest()[pri:0, instance:MosaferTest@47404bea]" started-at="2023-11-29T23:44:00 EET" name="postTest" finished-at="2023-11-29T23:44:00 EET" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postTest -->
