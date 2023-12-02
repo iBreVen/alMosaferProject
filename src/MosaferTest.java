@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -22,7 +23,7 @@ public class MosaferTest {
 	@BeforeTest
 	public void preTest() {
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2000));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
 		driver.get(URL);
 		driver.findElement(By.className("cta__saudi")).click();
 		driver.manage().window().maximize();
@@ -88,7 +89,8 @@ public class MosaferTest {
 		LocalDate expectedDepartureDate = currentDate.plusDays(1);
 		String expectedDepartureDateFormatted = expectedDepartureDate.format(formatter);
 
-		WebElement actualDepartureDate = driver.findElement(By.className("sc-lnrBVv")).findElement(By.className("sc-fvLVrH"));
+		WebElement actualDepartureDate = driver.findElement(By.className("sc-lnrBVv"))
+				.findElement(By.className("sc-fvLVrH"));
 		String actualDepartureDay = actualDepartureDate.getText();
 		String actualDepartureDayFormatted = actualDepartureDay.formatted(formatter);
 		Assert.assertEquals(actualDepartureDayFormatted, expectedDepartureDateFormatted, "Checks Departure Date");
@@ -110,12 +112,14 @@ public class MosaferTest {
 		LocalDate expectedReturnDate = currenDate.plusDays(2);
 		String expectedReturnDateFormatted = expectedReturnDate.format(formatter);
 
-		WebElement actualReturnDate = driver.findElement(By.className("sc-bYnzgO")).findElement(By.className("sc-fvLVrH"));
+		WebElement actualReturnDate = driver.findElement(By.className("sc-bYnzgO"))
+				.findElement(By.className("sc-fvLVrH"));
 		String actualReturnDay = actualReturnDate.getText();
 		String actualReturnDayFormatted = actualReturnDay.formatted(formatter);
 		Assert.assertEquals(actualReturnDayFormatted, expectedReturnDateFormatted, "Checks Return Date");
-		
+
 //		softAssert.assertEquals(actualReturnDayFormatted, expectedReturnDateFormatted); //Soft Assertion 
+//		softAssert.assertAll();
 
 	}
 
@@ -131,33 +135,54 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 1)
-	public void hotelLocation() {
+	@Test(priority = 2)
+	public void hotelLocation() throws InterruptedException {
 
 		String[] webLang = { "en", "ar" };
 		String[] enLocation = { "Dubai", "Jeddah", "Riyadh" };
 		String[] arLocation = { "دبي", "جدة" };
+
 		Random rand = new Random();
 		int randomNum = rand.nextInt(webLang.length);
 		int randomEngLoc = rand.nextInt(enLocation.length);
 		int randomArLoc = rand.nextInt(arLocation.length);
+
 		driver.get("https://www.almosafer.com/" + webLang[randomNum]);
 		String siteLang = driver.findElement(By.tagName("html")).getAttribute("lang");
 		driver.findElement(By.id("uncontrolled-tab-example-tab-hotels")).click();
 
-		if (siteLang == "en") {
+		if (siteLang.contains("en")) {
 
-			driver.findElement(By.className("phbroq-2")).sendKeys(enLocation[randomEngLoc]);
-			driver.findElement(By.cssSelector(
-					".phbroq-5.dbvRBC.AutoComplete__ListItem.AutoComplete__ListItem--highlighted.AutoComplete__ListItem"))
-					.click();
+			driver.findElement(By.className("phbroq-1")).findElement(By.className("phbroq-2"))
+					.sendKeys(enLocation[randomEngLoc]);
 
-		} else if (siteLang == "ar") {
+			WebElement resList = driver.findElement(By.className("tln3e3-1"));
+			Select resSelect = new Select(resList);
+			int randRes = rand.nextInt(2);
+			resSelect.selectByIndex(randRes);
 
-			driver.findElement(By.className("phbroq-2")).sendKeys(arLocation[randomArLoc]);
-			driver.findElement(By.cssSelector(
-					".phbroq-5.dbvRBC.AutoComplete__ListItem.AutoComplete__ListItem--highlighted.AutoComplete__ListItem"))
-					.click();
+			driver.findElement(By.className("sc-1vkdpp9-6")).click();
+			Thread.sleep(3000);
+			
+			String searchResults = driver.findElement(By.className("sc-cClmTo")).getText();
+			Assert.assertEquals(searchResults.contains("properties found"), true);
+
+		} else if (siteLang.contains("ar")) {
+
+			driver.findElement(By.className("phbroq-1")).findElement(By.className("phbroq-2"))
+					.sendKeys(arLocation[randomArLoc]);
+
+			WebElement resList = driver.findElement(By.className("tln3e3-1"));
+			Select resSelect = new Select(resList);
+			int randRes = rand.nextInt(2);
+			resSelect.selectByIndex(randRes);
+
+			driver.findElement(By.className("sc-1vkdpp9-6")).click();
+			Thread.sleep(3000);
+			
+			String searchResults = driver.findElement(By.className("sc-cClmTo")).getText();
+			Assert.assertEquals(searchResults.contains("عقار وجدنا"), true);
+
 
 		}
 

@@ -5,9 +5,17 @@
     <classes>
       <class name="MosaferTest">
         <methods>
+          <include name="QitafLogo"/>
+          <include name="randomWebsiteLang"/>
           <include name="preTest"/>
+          <include name="checkDepartureDate"/>
+          <include name="checkReturnDate"/>
+          <include name="hotelLocation"/>
+          <include name="checkHotelIsNotSelected"/>
           <include name="testLanguage"/>
           <include name="postTest"/>
+          <include name="contactNumber"/>
+          <include name="testCurrency"/>
         </methods>
       </class> <!-- MosaferTest -->
     </classes>
