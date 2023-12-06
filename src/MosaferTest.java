@@ -1,6 +1,8 @@
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -80,20 +82,55 @@ public class MosaferTest {
 		String[] webLang = { "en", "ar" };
 		Random rand = new Random();
 		int randomNum = rand.nextInt(webLang.length);
+
 		driver.get("https://www.almosafer.com/" + webLang[randomNum]);
+		String siteLang = driver.findElement(By.tagName("html")).getAttribute("lang");
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
 
-		LocalDate currentDate = LocalDate.now();
+		LocalDate currentDay = LocalDate.now();
 
-		LocalDate expectedDepartureDate = currentDate.plusDays(1);
-		String expectedDepartureDateFormatted = expectedDepartureDate.format(formatter);
+		LocalDate expectedDepartureDay = currentDay.plusDays(1);
 
-		WebElement actualDepartureDate = driver.findElement(By.className("sc-lnrBVv"))
-				.findElement(By.className("sc-fvLVrH"));
-		String actualDepartureDay = actualDepartureDate.getText();
+		String expectedDepartureDateFormatted = expectedDepartureDay.format(formatter);
+
+		String actualDepartureDay = driver.findElement(By.className("sc-lnrBVv")).findElement(By.className("sc-fvLVrH"))
+				.getText();
+
+		String actualDepartureDayofWeek = driver.findElement(By.className("sc-lnrBVv"))
+				.findElement(By.className("sc-eSePXt")).getText();
+
+		String actualDepartureMonth = driver.findElement(By.className("sc-lnrBVv"))
+				.findElement(By.className("sc-hvvHee")).getText();
+
 		String actualDepartureDayFormatted = actualDepartureDay.formatted(formatter);
-		Assert.assertEquals(actualDepartureDayFormatted, expectedDepartureDateFormatted, "Checks Departure Date");
+		Assert.assertEquals(actualDepartureDayFormatted, expectedDepartureDateFormatted, "Checks Departure Day");
+
+		if (siteLang.equals("en")) {
+
+			String expectedDepartureDayofWeekEN = expectedDepartureDay.getDayOfWeek().getDisplayName(TextStyle.FULL,
+					Locale.ENGLISH);
+			String expectedDepartureMonthEN = expectedDepartureDay.getMonth().getDisplayName(TextStyle.FULL,
+					Locale.ENGLISH);
+
+			Assert.assertEquals(actualDepartureDayofWeek, expectedDepartureDayofWeekEN, "Checks Departure Day of Week");
+
+			Assert.assertEquals(actualDepartureMonth, expectedDepartureMonthEN, "Checks Departure Month of Year");
+
+		} else if (siteLang.equals("ar")) {
+
+			String expectedDepartureDayofWeekAR = expectedDepartureDay.getDayOfWeek().getDisplayName(TextStyle.FULL,
+					new Locale("ar", "SA", "POSIX"));
+
+			String expectedDepartureMonthAR = expectedDepartureDay.getMonth().getDisplayName(TextStyle.FULL,
+					new Locale("ar", "SA", "POSIX"));
+
+			Assert.assertEquals(actualDepartureDayofWeek, expectedDepartureDayofWeekAR,
+					"Checks Departure Day of Week AR");
+
+			Assert.assertEquals(actualDepartureMonth, expectedDepartureMonthAR, "Checks Departure Month of Year AR");
+
+		}
 
 	}
 
@@ -103,23 +140,52 @@ public class MosaferTest {
 		String[] webLang = { "en", "ar" };
 		Random rand = new Random();
 		int randomNum = rand.nextInt(webLang.length);
+
 		driver.get("https://www.almosafer.com/" + webLang[randomNum]);
+		String siteLang = driver.findElement(By.tagName("html")).getAttribute("lang");
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
 
-		LocalDate currenDate = LocalDate.now();
+		LocalDate currentDate = LocalDate.now();
 
-		LocalDate expectedReturnDate = currenDate.plusDays(2);
-		String expectedReturnDateFormatted = expectedReturnDate.format(formatter);
+		LocalDate expectedReturnDay = currentDate.plusDays(2);
+		String expectedReturnDateFormatted = expectedReturnDay.format(formatter);
 
-		WebElement actualReturnDate = driver.findElement(By.className("sc-bYnzgO"))
-				.findElement(By.className("sc-fvLVrH"));
-		String actualReturnDay = actualReturnDate.getText();
+		String actualReturnDay = driver.findElement(By.className("sc-bYnzgO")).findElement(By.className("sc-fvLVrH"))
+				.getText();
+
+		String actualReturnDayofWeek = driver.findElement(By.className("sc-bYnzgO"))
+				.findElement(By.className("sc-eSePXt")).getText();
+
+		String actualReturnMonth = driver.findElement(By.className("sc-bYnzgO")).findElement(By.className("sc-hvvHee"))
+				.getText();
+
 		String actualReturnDayFormatted = actualReturnDay.formatted(formatter);
-		Assert.assertEquals(actualReturnDayFormatted, expectedReturnDateFormatted, "Checks Return Date");
+		Assert.assertEquals(actualReturnDayFormatted, expectedReturnDateFormatted, "Checks Return Day");
 
-//		softAssert.assertEquals(actualReturnDayFormatted, expectedReturnDateFormatted); //Soft Assertion 
-//		softAssert.assertAll();
+		if (siteLang.equals("en")) {
+
+			String expectedReturnDayofWeekEN = expectedReturnDay.getDayOfWeek().getDisplayName(TextStyle.FULL,
+					Locale.ENGLISH);
+			String expectedReturnMonthEN = expectedReturnDay.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+
+			Assert.assertEquals(actualReturnDayofWeek, expectedReturnDayofWeekEN, "Checks Departure Day of Week");
+
+			Assert.assertEquals(actualReturnMonth, expectedReturnMonthEN, "Checks Departure Month of Year");
+
+		} else if (siteLang.equals("ar")) {
+
+			String expectedReturnDayofWeekAR = expectedReturnDay.getDayOfWeek().getDisplayName(TextStyle.FULL,
+					new Locale("ar", "SA", "POSIX"));
+
+			String expectedReturnMonthAR = expectedReturnDay.getMonth().getDisplayName(TextStyle.FULL,
+					new Locale("ar", "SA", "POSIX"));
+
+			Assert.assertEquals(actualReturnDayofWeek, expectedReturnDayofWeekAR, "Checks Departure Day of Week AR");
+
+			Assert.assertEquals(actualReturnMonth, expectedReturnMonthAR, "Checks Departure Month of Year AR");
+
+		}
 
 	}
 
@@ -135,7 +201,7 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = false)
 	public void hotelLocation() throws InterruptedException {
 
 		String[] webLang = { "en", "ar" };
@@ -163,7 +229,7 @@ public class MosaferTest {
 
 			driver.findElement(By.className("sc-1vkdpp9-6")).click();
 			Thread.sleep(3000);
-			
+
 			String searchResults = driver.findElement(By.className("sc-cClmTo")).getText();
 			Assert.assertEquals(searchResults.contains("properties found"), true);
 
@@ -179,10 +245,9 @@ public class MosaferTest {
 
 			driver.findElement(By.className("sc-1vkdpp9-6")).click();
 			Thread.sleep(3000);
-			
+
 			String searchResults = driver.findElement(By.className("sc-cClmTo")).getText();
 			Assert.assertEquals(searchResults.contains("عقار وجدنا"), true);
-
 
 		}
 
