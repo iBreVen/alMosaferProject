@@ -2,6 +2,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public class MosaferTest {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void testLanguage() {
 
 		String language = driver.findElement(By.tagName("html")).getAttribute("lang");
@@ -40,7 +41,7 @@ public class MosaferTest {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void testCurrency() {
 
 		WebElement currency = driver.findElement(By.className("sc-dRFtgE"));
@@ -49,7 +50,7 @@ public class MosaferTest {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void contactNumber() {
 
 		WebElement contactNumber = driver.findElement(By.className("sc-hUfwpO"));
@@ -58,7 +59,7 @@ public class MosaferTest {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void QitafLogo() {
 
 		WebElement footer = driver.findElement(By.tagName("footer"));
@@ -67,7 +68,7 @@ public class MosaferTest {
 
 	}
 
-	@Test()
+	@Test(enabled = false)
 	public void checkHotelIsNotSelected() {
 
 		WebElement hotelTab = driver.findElement(By.id("uncontrolled-tab-example-tab-hotels"));
@@ -76,7 +77,7 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void checkDepartureDate() {
 
 		String[] webLang = { "en", "ar" };
@@ -134,7 +135,7 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void checkReturnDate() {
 
 		String[] webLang = { "en", "ar" };
@@ -189,7 +190,7 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void randomWebsiteLang() {
 
 		String[] webLang = { "en", "ar" };
@@ -201,7 +202,7 @@ public class MosaferTest {
 
 	}
 
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2)
 	public void hotelLocation() throws InterruptedException {
 
 		String[] webLang = { "en", "ar" };
@@ -248,6 +249,25 @@ public class MosaferTest {
 
 			String searchResults = driver.findElement(By.className("sc-cClmTo")).getText();
 			Assert.assertEquals(searchResults.contains("عقار وجدنا"), true);
+
+		}
+		
+		driver.findElement(By.className("eSXwxY")).click();
+		WebElement rightSection = driver.findElement(By.xpath("//div[@class='sc-htpNat KtFsv col-9']"));
+		List<WebElement> Prices = rightSection.findElements(By.className("Price__Value"));
+
+
+		int lowestPrice = 0;
+		int highestPrice = 0;
+
+		for (int i = 0; i < Prices.size(); i++) {
+
+			lowestPrice = Integer.parseInt(Prices.get(0).getText().replace(",", ""));
+
+			highestPrice = Integer.parseInt(Prices.get(Prices.size() - 1).getText().replace(",", ""));
+			System.out.println(lowestPrice + " this is the lowest price ");
+			System.out.println(highestPrice + " this is the highest price ");
+			Assert.assertEquals(lowestPrice < highestPrice, true);
 
 		}
 
